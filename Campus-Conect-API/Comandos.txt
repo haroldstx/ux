@@ -1,0 +1,2 @@
+nvm -> administrador de versiones de node
+npx express-generator nameFile
