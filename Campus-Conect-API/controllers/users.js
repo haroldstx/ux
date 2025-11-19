@@ -51,7 +51,23 @@ const createNewUser = async (req, res) => {
   }
 };
 
-const getUsers = async () => {};
+const getUsers = async (req, res) => {
+  try {
+    const users = await Usuarios.findAll();
+    if (users.length === 0) {
+      return res.status(400).json({
+        status: "Usuarios no encontrados",
+        message: "Error no existen usuarios en la bd",
+        error: error.message,
+      });
+    }
+    return res.status(200).json(users);
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Error interno del servidor", error: error.message });
+  }
+};
 
 module.exports = {
   getUsers,
